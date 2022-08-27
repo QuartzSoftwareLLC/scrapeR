@@ -1,0 +1,151 @@
+---
+title: "Basic Pipelines"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{basic_pipelines}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(scrapeR)
+library(tidyverse)
+library(rvest)
+```
+
+In this tutorial we will be scraping data contained on CDC website related to rotavirus testing.
+Our scraping will begin at [https://www.cdc.gov/surveillance/nrevss/rotavirus/index.html](https://www.cdc.gov/surveillance/nrevss/rotavirus/index.html).
+
+To begin, we will create our nrevss spider and add our website to its queue.
+
+```{r}
+root <- "https://www.cdc.gov"
+
+start_url <- paste0(root, "/surveillance/nrevss/rotavirus/index.html")
+
+nrevss_spider <- spider("nrevss", queue = start_url)
+
+nrevss_spider
+```
+
+As shown above, we have created an nrevss spider with one item in its queue and no steps.
+
+Lets start by adding some steps to our spider.
+We will begin by adding a step to grab all card links on the page.
+
+```{r}
+nrevss_spider %>%
+    add_parser(~ {
+        read_html(.x) %>%
+            html_nodes("a.card") %>%
+            html_attr("href") %>%
+            sapply(\(x) paste0(root, x))
+    }) -> nrevss_spider
+
+nrevss_spider
+```
+
+If we run our spider now, we will get a list of all links supplied on the page
+
+```{r}
+run(nrevss_spider)
+```
+
+Lets add a couple more steps to our above spider.
+In this example, we will start from scratch.
+
+```{r}
+spider("nrevss") %>%
+    add_queue(paste0(
+        root,
+        "/surveillance/nrevss/rotavirus/index.html"
+    )) %>%
+    add_parser(~ {
+        read_html(.x) %>%
+            html_nodes("a.card") %>%
+            html_attr("href") %>%
+            sapply(\(x) paste0(root, x))
+    }) %>%
+    add_parser(~ {
+        read_html(.x) %>%
+            html_nodes("a") -> els
+
+        tibble(
+            text = html_text(els),
+            href = html_attr(els, "href")
+        ) %>%
+            subset(grepl("Table", text)) %>%
+            subset(!grepl("Nat", href)) %>%
+            with(
+                paste0(root, href)
+            )
+    }) %>%
+    add_parser(~ {
+        read_html(.x) %>%
+            html_table()
+    }) -> nrevss_spider_2
+    
+run(nrevss_spider_2)
+```
+
+As you can see, the spider has returned a list of all scraped tables.
+The **parser** steps that we have added with the `add_parser` function are designed to 
+run on each item of the queue individually, similarly to when using the `sapply` function in base R.
+We now need to combine these tables into a single table. To do this, we use a **transformer** the the 
+`add_transformer` function.
+
+```{r}
+nrevss_spider_2 %>%
+    add_transformer(
+        ~ do.call(rbind, .x)
+    ) -> nrevss_with_transformer
+
+run(nrevss_with_transformer)
+```
+
+The last thing to cover in this tutorial is the **pipeline**.
+So far, we have used **parser** and **transformers** to scrape and transform
+our data with steps unique to this specific website scrape.
+
+**Pipelines** are generic collection of **parser** or **transformer** steps that
+can be reused acorss spiders. Lets create a **pipeline** to clean our column names and 
+save the results to and `output` folder.
+
+```{r}
+pipeline("clean and save to csv") %>%
+    add_transformer(
+        ~ janitor::clean_names(.x)
+    ) %>%
+    add_transformer(~ {
+        dir.create("output", showWarnings = F)
+        write.csv(
+            .x,
+            paste0("output/", .y$name, ".csv"),
+            row.names = F
+        )
+        .x
+    }) -> csv_pipeline
+
+csv_pipeline
+```
+
+Lastly, we can set this as the pipeline for our previously created spider and run the spider one last time.
+
+```{r}
+final_nrevss_spider <- set_pipeline(nrevss_with_transformer, csv_pipeline) 
+
+final_nrevss_spider
+```
+
+```{r}
+run(final_nrevss_spider)
+```
+
+The spider has now cleaned the names of the pipline and saved to an output file.
