@@ -23,6 +23,9 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li>
+  <a href="../articles/scrapeR.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -32,7 +35,10 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/basic_pipelines.html">Basic Pipelines</a>
+      <a href="../articles/background.html">Background Reading</a>
+    </li>
+    <li>
+      <a href="../articles/complex.html">A Complex Scraping Project</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
@@ -48,34 +54,42 @@
     </div>
 
     <table class="ref-index"><colgroup><col class="alias"><col class="title"></colgroup><tbody><tr><th colspan="2">
-          <h2 id="all-functions">All functions <a href="#all-functions" class="anchor" aria-hidden="true"></a></h2>
+          <h2 id="building-blocks">Building Blocks <a href="#building-blocks" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="add_parser.html">add_parser()</a></code> </p>
+          <p><code><a href="spider.html">spider()</a></code> </p>
         </td>
-        <td><p>add_parser</p></td>
-      </tr><tr><td>
-          <p><code><a href="add_transformer.html">add_transformer()</a></code> </p>
-        </td>
-        <td><p>add_transformer</p></td>
+        <td><p>Spider for crawling urls</p></td>
       </tr><tr><td>
           <p><code><a href="pipeline.html">pipeline()</a></code> </p>
         </td>
-        <td><p>pipeline</p></td>
+        <td><p>Collection of generic steps to append to spider</p></td>
+      </tr><tr><td>
+          <p><code><a href="runner.html">runner()</a></code> </p>
+        </td>
+        <td><p>runner</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="helpers">Helpers <a href="#helpers" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="add_step.html">add_step()</a></code> <code><a href="add_step.html">add_parser()</a></code> <code><a href="add_step.html">add_transformer()</a></code> </p>
+        </td>
+        <td><p>Add steps to a pipeline or spider.</p></td>
       </tr><tr><td>
           <p><code><a href="run.html">run()</a></code> </p>
         </td>
-        <td><p>run</p></td>
+        <td><p>Run a spider or a runner</p></td>
+      </tr><tr><td>
+          <p><code><a href="set_name.html">set_name()</a></code> </p>
+        </td>
+        <td><p>Rename a spider</p></td>
       </tr><tr><td>
           <p><code><a href="set_pipeline.html">set_pipeline()</a></code> </p>
         </td>
         <td><p>pipeline
 sets the pipeline used by the given spider</p></td>
-      </tr><tr><td>
-          <p><code><a href="spider.html">spider()</a></code> </p>
-        </td>
-        <td><p>spider</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -85,7 +99,7 @@ sets the pipeline used by the given spider</p></td>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by First Last.</p>
+  <p></p><p>Developed by Jacob Clarke.</p>
 </div>
 
 <div class="pkgdown">

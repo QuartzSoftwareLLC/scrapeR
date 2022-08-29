@@ -2,10 +2,30 @@
 % Please edit documentation in R/spider.R
 \name{spider}
 \alias{spider}
-\title{spider}
+\title{Spider for crawling urls}
 \usage{
-spider(name, queue = list(), steps = list(), pipeline = list())
+spider(name = "", queue = list(), steps = list(), pipeline = NA)
+}
+\arguments{
+\item{name}{the name of the spider to be used for logging purposes}
+
+\item{queue}{the list of urls or initial paths to be used by parsers}
+
+\item{steps}{a list of parsers or transformers to be applied to the data sequencially}
+
+\item{pipeline}{the default pipeline to apply to the data after all steps are applied}
 }
 \description{
 combination of multiple steps to be applied in parellel to data
 }
+\section{Queue}{
+
+The queue is a list of items to be passed through each of the
+spider's steps. It is usually a list of urls that are then scraped individually by a parser
+}
+
+\section{Steps}{
+
+Each spider is made of a series of steps.
+}
+

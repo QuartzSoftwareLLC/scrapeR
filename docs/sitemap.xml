@@ -4,10 +4,19 @@
     <loc>/404.html</loc>
   </url>
   <url>
-    <loc>/articles/basic_pipelines.html</loc>
+    <loc>/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>/articles/background.html</loc>
+  </url>
+  <url>
+    <loc>/articles/complex.html</loc>
   </url>
   <url>
     <loc>/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>/articles/scrapeR.html</loc>
   </url>
   <url>
     <loc>/authors.html</loc>
@@ -19,16 +28,34 @@
     <loc>/reference/add_parser.html</loc>
   </url>
   <url>
+    <loc>/reference/add_queue.html</loc>
+  </url>
+  <url>
+    <loc>/reference/add_step.html</loc>
+  </url>
+  <url>
     <loc>/reference/add_transformer.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
+    <loc>/reference/parser.html</loc>
+  </url>
+  <url>
+    <loc>/reference/pipe.html</loc>
+  </url>
+  <url>
     <loc>/reference/pipeline.html</loc>
   </url>
   <url>
     <loc>/reference/run.html</loc>
+  </url>
+  <url>
+    <loc>/reference/runner.html</loc>
+  </url>
+  <url>
+    <loc>/reference/set_name.html</loc>
   </url>
   <url>
     <loc>/reference/set_pipeline.html</loc>

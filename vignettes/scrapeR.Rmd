@@ -1,0 +1,61 @@
+---
+title: "scrapeR 101"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{scrapeR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(scrapeR)
+library(rvest)
+```
+
+In this tutorial we will be scraping data contained on the cat and dog wikipedia pages.
+
+```{r}
+wiki_scraper <- spider("wiki scraper")
+wiki_scraper
+
+
+wiki_scraper %>%
+    add_queue(
+        c(
+        "https://simple.wikipedia.org/wiki/Cat",
+        "https://simple.wikipedia.org/wiki/Dog"
+        )
+    ) -> wiki_scraper
+wiki_scraper
+
+```
+
+Lets add our first steps to the scraper.
+Steps are applied to each item in the queue.
+Here, we will extract all of the headers from each wikipedia page.
+Please note that instead of passing functions to the [add_parser()] function, we pass formulas.
+This is because each step is run with the [purrr::map()] function with the queue item as the first argument and spider as the second argument.
+
+```{r}
+wiki_scraper %>%
+    add_parser( ~ {
+        .x %>%
+            read_html() %>%
+            html_nodes(".mw-headline") %>%
+            html_text()
+    }) -> wiki_scraper
+wiki_scraper
+```
+
+All evaluation in `scrapeR` is delayed until the [run()] method is called. We can do so now to see our output.
+
+```{r}
+run(wiki_scraper) %>% paste(sep = "")
+```

@@ -11,3 +11,10 @@ set_pipeline(.x, parser)
 pipeline
 sets the pipeline used by the given spider
 }
+\seealso{
+Other helpers: 
+\code{\link{add_step}()},
+\code{\link{run}()},
+\code{\link{set_name}()}
+}
+\concept{helpers}

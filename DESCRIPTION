@@ -1,12 +1,9 @@
 Package: scrapeR
-Title: What the Package Does (One Line, Title Case)
+Title: A flexible scraping framework for R.
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Authors@R: person('Jacob', ,'Clarke', email = 'jacobclarke718@gmail.com', role = c('cre', 'aut'))
+Description: scrapeR is a framework inspired by the `scrapy` python framework. It is meant to be used for batching multiple crawlers and reusing item pipelines between them.
+License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
@@ -15,5 +12,8 @@ Suggests:
     rmarkdown,
     purrr,
     rvest,
-    tidyverse
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
+Config/testthat/edition: 3
+Imports: 
+    magrittr

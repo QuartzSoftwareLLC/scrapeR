@@ -1,7 +1,20 @@
-#' add_parser
+#' Add steps to a pipeline or spider.
 #'
-#' adds a parser step to the given pipeline. Parsers are applied to each item of the queue separately.
+#' adds a step to the given pipeline.
 #' @export
+#' @family helpers
+add_step <- function(.x, parser) {
+    UseMethod("add_step")
+}
+
+#' @export
+add_step.default <- function(.x, step) {
+    .x$steps <- append(.x$steps, list(step))
+    .x
+}
+
+#' @export
+#' @rdname add_step
 add_parser <- function(.x, parser) {
     UseMethod("add_parser")
 }
@@ -12,11 +25,8 @@ add_parser.default <- function(.x, parser) {
     .x
 }
 
-#' add_transformer
-#'
-#' adds a transformer step to the given pipeline.
-#' Transformers are applied across all items of the pipeline and can often be used for aggregation.
 #' @export
+#' @rdname add_step
 add_transformer <- function(.x, parser) {
     UseMethod("add_transformer")
 }
@@ -30,17 +40,19 @@ add_transformer.default <- function(.x, transformer) {
     .x
 }
 
-#' run
+#' Run a spider or a runner
 #'
-#' Used to run either a pipeline or a runner.
+#' The run function goes through each step of a spider's steps and then runs each of the steps in it's pipeline.
 #' @export
-run <- function(obj) {
+#' @family helpers
+run <- function(.x) {
     UseMethod("run")
 }
 
 #' pipeline
 #' sets the pipeline used by the given spider
 #' @export
+#' @family helpers
 set_pipeline <- function(.x, parser) {
     UseMethod("set_pipeline")
 }

@@ -1,14 +1,25 @@
-#' spider
+#' Spider for crawling urls
 #'
 #' combination of multiple steps to be applied in parellel to data
+#'
+#' @section Queue:
+#' The queue is a list of items to be passed through each of the
+#' spider's steps. It is usually a list of urls that are then scraped individually by a parser
+#' @section Steps:
+#' Each spider is made of a series of steps.
+#'
+#' @param name the name of the spider to be used for logging purposes
+#' @param queue the list of urls or initial paths to be used by parsers
+#' @param steps a list of parsers or transformers to be applied to the data sequencially
+#' @param pipeline the default pipeline to apply to the data after all steps are applied
 #' @export
-spider <- function(name,
+spider <- function(name = "",
                    queue = list(),
                    steps = list(),
                    pipeline = NA) {
     value <- list(
         name = name,
-        queue = queue,
+        queue = as.list(queue),
         steps = steps,
         pipeline = pipeline
     )
@@ -31,6 +42,23 @@ print.spider <- function(x, ...) {
         cat("\nPipeline\n-------\n")
         print(x$pipeline)
     }
+}
+
+#' Rename a spider
+#'
+#' Redefine the name of a spider
+#' @export
+#' @examples
+#' # this is often used after creating a template spider
+#'
+#' template <- spider("template")
+#'
+#' implementation_one <- set_name(spider, "implementation_one")
+#' implementation_two <- set_name(spider, "implementation_two")
+#' @family helpers
+set_name <- function(.x, name) {
+    .x$name <- name
+    .x
 }
 
 run_steps <- function(x, .data, spider = NA) {
@@ -59,7 +87,8 @@ run.spider <- function(.x) {
 }
 
 
-
+#' Add items to a spider queue
+#'
 #' @export
 add_queue <- function(.x, items) {
     for (item in as.list(items)) {
@@ -73,3 +102,4 @@ set_pipeline.spider <- function(.x, pipeline) {
     .x$pipeline <- pipeline
     .x
 }
+

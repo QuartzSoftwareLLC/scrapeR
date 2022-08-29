@@ -1,0 +1,27 @@
+---
+title: "Background Reading"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{background}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(scrapeR)
+```
+
+This vignette is meant to be used as a reading list of packages to review to better understand scrapeR.
+
+Reading List:
+
+- [rvest](https://rvest.tidyverse.org/articles/rvest.html)
+- [reslenium](https://docs.ropensci.org/RSelenium/articles/basics.html)
+- [purrr](https://purrr.tidyverse.org)

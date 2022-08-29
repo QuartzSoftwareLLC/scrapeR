@@ -2,10 +2,17 @@
 % Please edit documentation in R/generics.R
 \name{run}
 \alias{run}
-\title{run}
+\title{Run a spider or a runner}
 \usage{
-run(obj)
+run(.x)
 }
 \description{
-Used to run either a pipeline or a runner.
+The run function goes through each step of a spider's steps and then runs each of the steps in it's pipeline.
 }
+\seealso{
+Other helpers: 
+\code{\link{add_step}()},
+\code{\link{set_name}()},
+\code{\link{set_pipeline}()}
+}
+\concept{helpers}

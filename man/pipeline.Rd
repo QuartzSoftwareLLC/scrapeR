@@ -2,9 +2,9 @@
 % Please edit documentation in R/pipeline.R
 \name{pipeline}
 \alias{pipeline}
-\title{pipeline}
+\title{Collection of generic steps to append to spider}
 \usage{
-pipeline(name, steps = list())
+pipeline(name = "", steps = list())
 }
 \description{
 combination of multiple steps to be applied in parellel to data
