@@ -63,6 +63,13 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">pipeline</span><span class="op">(</span>name <span class="op">=</span> <span class="st">""</span>, steps <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
     </div>
 
+    <div id="arguments">
+    <h2>Arguments</h2>
+    <dl><dt>name</dt>
+<dd><p>name of the pipeline</p></dd>
+<dt>steps</dt>
+<dd><p>a <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code> of <code><a href="steps.html">steps()</a></code> to be applied</p></dd>
+</dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
@@ -72,8 +79,7 @@
 <span class="r-in">    <span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> # A pipeline: clean names </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ### Steps: 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      [,1]                      [,2]         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] ~janitor::clean_names(.x) "transformer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ( 1 ) A transformer: ~janitor::clean_names(.x) </span>
 </code></pre></div>
     </div>
   </div>

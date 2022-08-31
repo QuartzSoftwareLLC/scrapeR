@@ -2,6 +2,8 @@
 #'
 #' combination of multiple steps to be applied in parellel to data
 #' @export
+#' @param name name of the pipeline
+#' @param steps a [list()] of [steps()] to be applied
 #' @examples
 #' pipeline("clean names") |>
 #'     add_transformer(
@@ -17,6 +19,11 @@ pipeline <- function(name = "", steps = list()) {
 #' @export
 print.pipeline <- function(x, ...) {
     cat(paste("# A pipeline:", x$name, "\n"))
-    cat(paste0("### Steps: ", length(x$steps), "\n"))
-    print(do.call(rbind, x$steps))
+    print_steps(x)
+}
+
+#' @export
+#' @rdname run
+run.pipeline <- function(.x, .data) {
+    run_steps(.x, .data)
 }

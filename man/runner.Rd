@@ -6,6 +6,11 @@
 \usage{
 runner(spiders = list(), pipeline = NA)
 }
+\arguments{
+\item{spiders}{a \code{\link[=list]{list()}} of \code{\link[=spider]{spider()}} objects to run}
+
+\item{pipeline}{a \code{\link[=pipeline]{pipeline()}} to apply to anny \code{\link[=spider]{spider()}} objects that do not have a built in \code{\link[=pipeline]{pipeline()}}}
+}
 \description{
 Run multiple spiders at once.
 }

@@ -68,26 +68,38 @@
     <dl><dt>name</dt>
 <dd><p>the name of the spider to be used for logging purposes</p></dd>
 <dt>queue</dt>
-<dd><p>the list of urls or initial paths to be used by parsers</p></dd>
+<dd><p>the <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code> of urls or initial paths to be used by <code><a href="steps.html">steps()</a></code></p></dd>
 <dt>steps</dt>
-<dd><p>a list of parsers or transformers to be applied to the data sequencially</p></dd>
+<dd><p>a <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code> of <code><a href="steps.html">steps()</a></code> to be applied to the data sequencially</p></dd>
 <dt>pipeline</dt>
-<dd><p>the default pipeline to apply to the data after all steps are applied</p></dd>
+<dd><p>the default <code><a href="pipeline.html">pipeline()</a></code> to apply to the data after all steps are applied</p></dd>
 </dl></div>
-    <div id="queue">
-    <h2>Queue</h2>
-    
 
-<p>The queue is a list of items to be passed through each of the
-spider's steps. It is usually a list of urls that are then scraped individually by a parser</p>
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">s_multiply</span> <span class="op">&lt;-</span> <span class="fu">spider</span><span class="op">(</span><span class="st">'multiply'</span>, queue <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, steps <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="steps.html">parser</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">.x</span> <span class="op">*</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">s_multiply</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # A spider: multiply </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ### Queue: 4 item(s)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ### Steps: 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ( 1 ) A parser: ~.x * 2 </span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">s_multiply</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Executing parser  ~.x * 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[4]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+</code></pre></div>
     </div>
-    <div id="steps">
-    <h2>Steps</h2>
-    
-
-<p>Each spider is made of a series of steps.</p>
-    </div>
-
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

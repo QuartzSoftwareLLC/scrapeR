@@ -55,7 +55,7 @@
 
     <table class="ref-index"><colgroup><col class="alias"><col class="title"></colgroup><tbody><tr><th colspan="2">
           <h2 id="building-blocks">Building Blocks <a href="#building-blocks" class="anchor" aria-hidden="true"></a></h2>
-          <p class="section-desc"></p>
+          <p class="section-desc"></p><p>These are the basic nouns of scrapeR. A spider is made of a series of steps that are run sequentially on each item in its queue. A pipeline can contain a series of generic steps to be reused at the end of each scrapeR. A runner can be used to run multiple spiders at once.</p>
         </th>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="spider.html">spider()</a></code> </p>
@@ -69,11 +69,19 @@
           <p><code><a href="runner.html">runner()</a></code> </p>
         </td>
         <td><p>runner</p></td>
+      </tr><tr><td>
+          <p><code><a href="steps.html">parser()</a></code> <code><a href="steps.html">transformer()</a></code> </p>
+        </td>
+        <td><p>Steps for Spiders and Pipelines</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="helpers">Helpers <a href="#helpers" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p>
         </th>
       </tr></tbody><tbody><tr><td>
+          <p><code><a href="add_queue.html">add_queue()</a></code> </p>
+        </td>
+        <td><p>Add items to a spider queue</p></td>
+      </tr><tr><td>
           <p><code><a href="add_step.html">add_step()</a></code> <code><a href="add_step.html">add_parser()</a></code> <code><a href="add_step.html">add_transformer()</a></code> </p>
         </td>
         <td><p>Add steps to a pipeline or spider.</p></td>
@@ -90,6 +98,30 @@
         </td>
         <td><p>pipeline
 sets the pipeline used by the given spider</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="prebuilt-steps">Prebuilt Steps <a href="#prebuilt-steps" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>These build in steps can be added to different to a spider or pipeline using the add_step function.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="t_bind_rows.html">t_bind_rows()</a></code> </p>
+        </td>
+        <td><p>bind rows</p></td>
+      </tr><tr><td>
+          <p><code><a href="t_clean_names.html">t_clean_names()</a></code> </p>
+        </td>
+        <td><p>clean names</p></td>
+      </tr><tr><td>
+          <p><code><a href="t_save_aws.html">t_save_aws()</a></code> </p>
+        </td>
+        <td><p>write results to aws s3</p></td>
+      </tr><tr><td>
+          <p><code><a href="t_save_output.html">t_save_output()</a></code> </p>
+        </td>
+        <td><p>save output</p></td>
+      </tr><tr><td>
+          <p><code><a href="p_read_html.html">p_read_html()</a></code> </p>
+        </td>
+        <td><p>read html</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

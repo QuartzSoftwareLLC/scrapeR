@@ -60,12 +60,28 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">run</span><span class="op">(</span><span class="va">.x</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">run</span><span class="op">(</span><span class="va">.x</span>, <span class="va">...</span><span class="op">)</span>
+
+<span class="co"># S3 method for pipeline</span>
+<span class="fu">run</span><span class="op">(</span><span class="va">.x</span>, <span class="va">.data</span><span class="op">)</span>
+
+<span class="co"># S3 method for runner</span>
+<span class="fu">run</span><span class="op">(</span><span class="va">.x</span><span class="op">)</span>
+
+<span class="co"># S3 method for spider</span>
+<span class="fu">run</span><span class="op">(</span><span class="va">.x</span><span class="op">)</span>
+
+<span class="co"># S3 method for parser</span>
+<span class="fu">run</span><span class="op">(</span><span class="va">.x</span>, <span class="va">.data</span>, spider <span class="op">=</span> <span class="fu"><a href="spider.html">spider</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># S3 method for transformer</span>
+<span class="fu">run</span><span class="op">(</span><span class="va">.x</span>, <span class="va">.data</span>, spider <span class="op">=</span> <span class="fu"><a href="spider.html">spider</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p>Other helpers: 
+<code><a href="add_queue.html">add_queue</a>()</code>,
 <code><a href="add_step.html">add_step</a>()</code>,
 <code><a href="set_name.html">set_name</a>()</code>,
 <code><a href="set_pipeline.html">set_pipeline</a>()</code></p></div>

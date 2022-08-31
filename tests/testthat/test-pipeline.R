@@ -6,3 +6,10 @@ test_that("pipelines can be added", {
     run() %>%
     expect_equal(2)
 })
+
+test_that("pipelines can be run", {
+  pipeline() %>%
+    add_transformer(~ .x * 2) %>%
+    run(2) %>%
+    expect_equal(4)
+})

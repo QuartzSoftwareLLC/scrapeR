@@ -25,7 +25,6 @@ In this tutorial we will be scraping data contained on the cat and dog wikipedia
 wiki_scraper <- spider("wiki scraper")
 wiki_scraper
 
-
 wiki_scraper %>%
     add_queue(
         c(
@@ -45,12 +44,12 @@ This is because each step is run with the [purrr::map()] function with the queue
 
 ```{r}
 wiki_scraper %>%
-    add_parser( ~ {
-        .x %>%
-            read_html() %>%
-            html_nodes(".mw-headline") %>%
-            html_text()
-    }) -> wiki_scraper
+    add_parser(
+      ~ read_html(.x) %>%
+          html_nodes(".mw-headline") %>%
+          html_text(),
+      name = "get headers"
+    ) -> wiki_scraper
 wiki_scraper
 ```
 

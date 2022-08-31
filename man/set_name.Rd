@@ -14,11 +14,15 @@ Redefine the name of a spider
 
 template <- spider("template")
 
-implementation_one <- set_name(spider, "implementation_one")
-implementation_two <- set_name(spider, "implementation_two")
+implementation_one <- set_name(spider(), "implementation_one")
+implementation_one
+
+implementation_two <- set_name(spider(), "implementation_two")
+implementation_two
 }
 \seealso{
 Other helpers: 
+\code{\link{add_queue}()},
 \code{\link{add_step}()},
 \code{\link{run}()},
 \code{\link{set_pipeline}()}

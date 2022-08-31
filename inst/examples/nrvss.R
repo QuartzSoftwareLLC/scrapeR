@@ -23,12 +23,12 @@ spider("nrevss") %>%
         root,
         "/surveillance/nrevss/rotavirus/index.html"
     )) %>%
-    add_parser(~ {
-        read_html(.x) %>%
+    add_parser(
+        ~ read_html(.x) %>%
             html_nodes("a.card") %>%
             html_attr("href") %>%
             sapply(\(x) paste0(root, x))
-    }) %>%
+    ) %>%
     add_parser(~ {
         read_html(.x) %>%
             html_nodes("a") -> els

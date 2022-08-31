@@ -1,0 +1,22 @@
+reference:
+- title: Building Blocks
+  desc: |
+    These are the basic nouns of scrapeR.
+    A spider is made of a series of steps that are run sequentially on each item in its queue.
+    A pipeline can contain a series of generic steps to be reused at the end of each scrapeR.
+    A runner can be used to run multiple spiders at once.
+  contents:
+  - spider
+  - pipeline
+  - runner
+  - parser
+  - transformer
+- title: Helpers
+  contents:
+  - has_concept("helpers")
+- title: Prebuilt Steps
+  desc: |
+    These build in steps can be added to different to a spider or pipeline using the add_step function.
+  contents:
+  - starts_with("t_")
+  - starts_with("p_")

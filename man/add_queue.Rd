@@ -9,3 +9,16 @@ add_queue(.x, items)
 \description{
 Add items to a spider queue
 }
+\examples{
+spider() \%>\% add_queue("first item")
+
+spider() \%>\% add_queue(c("first item", "second item"))
+}
+\seealso{
+Other helpers: 
+\code{\link{add_step}()},
+\code{\link{run}()},
+\code{\link{set_name}()},
+\code{\link{set_pipeline}()}
+}
+\concept{helpers}

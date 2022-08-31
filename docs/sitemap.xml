@@ -37,7 +37,19 @@
     <loc>/reference/add_transformer.html</loc>
   </url>
   <url>
+    <loc>/reference/d.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/load_project.html</loc>
+  </url>
+  <url>
+    <loc>/reference/p.html</loc>
+  </url>
+  <url>
+    <loc>/reference/p_read_html.html</loc>
   </url>
   <url>
     <loc>/reference/parser.html</loc>
@@ -62,5 +74,23 @@
   </url>
   <url>
     <loc>/reference/spider.html</loc>
+  </url>
+  <url>
+    <loc>/reference/steps.html</loc>
+  </url>
+  <url>
+    <loc>/reference/t.html</loc>
+  </url>
+  <url>
+    <loc>/reference/t_bind_rows.html</loc>
+  </url>
+  <url>
+    <loc>/reference/t_clean_names.html</loc>
+  </url>
+  <url>
+    <loc>/reference/t_save_aws.html</loc>
+  </url>
+  <url>
+    <loc>/reference/t_save_output.html</loc>
   </url>
 </urlset>

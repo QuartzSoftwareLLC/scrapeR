@@ -99,10 +99,7 @@ queue.</p>
 
 <span class="va">nrevss_spider</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spider.html">spider</a></span><span class="op">(</span><span class="st">"nrevss"</span>, queue <span class="op">=</span> <span class="va">start_url</span><span class="op">)</span>
 
-<span class="va">nrevss_spider</span>
-<span class="co">#&gt; # A spider: nrevss </span>
-<span class="co">#&gt; ### Queue: 1 item(s)</span>
-<span class="co">#&gt; ### Steps: 0</span></code></pre></div>
+<span class="va">nrevss_spider</span></code></pre></div>
 <p>As shown above, we have created an nrevss spider with one item in its
 queue and no steps.</p>
 <p>Lets start by adding some steps to our spider. We will begin by
@@ -116,27 +113,11 @@ adding a step to grab all card links on the page.</p>
             <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">root</span>, <span class="va">x</span><span class="op">)</span><span class="op">)</span>
     <span class="op">}</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">nrevss_spider</span>
 
-<span class="va">nrevss_spider</span>
-<span class="co">#&gt; # A spider: nrevss </span>
-<span class="co">#&gt; ### Queue: 1 item(s)</span>
-<span class="co">#&gt; ### Steps: 1</span>
-<span class="co">#&gt;      [,1]      [,2]    </span>
-<span class="co">#&gt; [1,] formula,2 "parser"</span></code></pre></div>
+<span class="va">nrevss_spider</span></code></pre></div>
 <p>If we run our spider now, we will get a list of all links supplied on
 the page</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">nrevss_spider</span><span class="op">)</span>
-<span class="co">#&gt; $`/surveillance/nrevss/rotavirus/natl-trend.html`</span>
-<span class="co">#&gt; [1] "https://www.cdc.gov/surveillance/nrevss/rotavirus/natl-trend.html"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $`/surveillance/nrevss/rotavirus/region.html`</span>
-<span class="co">#&gt; [1] "https://www.cdc.gov/surveillance/nrevss/rotavirus/region.html"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $`/surveillance/nrevss/rotavirus/reports.html`</span>
-<span class="co">#&gt; [1] "https://www.cdc.gov/surveillance/nrevss/rotavirus/reports.html"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $`/rotavirus/clinical.html`</span>
-<span class="co">#&gt; [1] "https://www.cdc.gov/rotavirus/clinical.html"</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">nrevss_spider</span><span class="op">)</span></code></pre></div>
 <p>Lets add a couple more steps to our above spider. In this example, we
 will start from scratch.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -170,70 +151,7 @@ will start from scratch.</p>
             <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html" class="external-link">html_table</a></span><span class="op">(</span><span class="op">)</span>
     <span class="op">}</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">nrevss_spider_2</span>
     
-<span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">nrevss_spider_2</span><span class="op">)</span>
-<span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 52 × 4</span></span>
-<span class="co">#&gt;       `` RepWeekDate RegID `Antigen Detection`</span>
-<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1 08/28/21        1                2.38</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2 09/04/21        1                2.38</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3 09/11/21        1                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4 09/18/21        1                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5 09/25/21        1                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6 10/02/21        1                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7 10/09/21        1                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8 10/16/21        1                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9 10/23/21        1                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10 10/30/21        1                2.56</span>
-<span class="co">#&gt; <span style="color: #949494;"># … with 42 more rows</span></span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 52 × 4</span></span>
-<span class="co">#&gt;       `` RepWeekDate RegID `Antigen Detection`</span>
-<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1 08/28/21        2               2.61 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2 09/04/21        2               3.44 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3 09/11/21        2               2.43 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4 09/18/21        2               1.53 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5 09/25/21        2               0.694</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6 10/02/21        2               1.04 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7 10/09/21        2               1.04 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8 10/16/21        2               1.04 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9 10/23/21        2               0    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10 10/30/21        2               0    </span>
-<span class="co">#&gt; <span style="color: #949494;"># … with 42 more rows</span></span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 52 × 4</span></span>
-<span class="co">#&gt;       `` RepWeekDate RegID `Antigen Detection`</span>
-<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1 08/28/21        3               5.29 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2 09/04/21        3               5.77 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3 09/11/21        3               1.22 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4 09/18/21        3               0.483</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5 09/25/21        3               0.556</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6 10/02/21        3               0.556</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7 10/09/21        3               1.37 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8 10/16/21        3               1.26 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9 10/23/21        3               1.91 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10 10/30/21        3               1.10 </span>
-<span class="co">#&gt; <span style="color: #949494;"># … with 42 more rows</span></span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[4]]</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 52 × 4</span></span>
-<span class="co">#&gt;       `` RepWeekDate RegID `Antigen Detection`</span>
-<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1 08/28/21        4                2.08</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2 09/04/21        4                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3 09/11/21        4                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4 09/18/21        4               11.1 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5 09/25/21        4               11.1 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6 10/02/21        4               11.1 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7 10/09/21        4                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8 10/16/21        4                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9 10/23/21        4                3.70</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10 10/30/21        4                3.70</span>
-<span class="co">#&gt; <span style="color: #949494;"># … with 42 more rows</span></span></code></pre></div>
+<span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">nrevss_spider_2</span><span class="op">)</span></code></pre></div>
 <p>As you can see, the spider has returned a list of all scraped tables.
 The <strong>parser</strong> steps that we have added with the
 <code>add_parser</code> function are designed to run on each item of the
@@ -247,21 +165,7 @@ table. To do this, we use a <strong>transformer</strong> the the
         <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">rbind</span>, <span class="va">.x</span><span class="op">)</span>
     <span class="op">)</span> <span class="op">-&gt;</span> <span class="va">nrevss_with_transformer</span>
 
-<span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">nrevss_with_transformer</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 208 × 4</span></span>
-<span class="co">#&gt;       `` RepWeekDate RegID `Antigen Detection`</span>
-<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1 08/28/21        1                2.38</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2 09/04/21        1                2.38</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3 09/11/21        1                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4 09/18/21        1                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5 09/25/21        1                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6 10/02/21        1                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7 10/09/21        1                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8 10/16/21        1                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9 10/23/21        1                0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10 10/30/21        1                2.56</span>
-<span class="co">#&gt; <span style="color: #949494;"># … with 198 more rows</span></span></code></pre></div>
+<span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">nrevss_with_transformer</span><span class="op">)</span></code></pre></div>
 <p>The last thing to cover in this tutorial is the
 <strong>pipeline</strong>. So far, we have used <strong>parser</strong>
 and <strong>transformers</strong> to scrape and transform our data with
@@ -286,50 +190,15 @@ folder.</p>
         <span class="va">.x</span>
     <span class="op">}</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">csv_pipeline</span>
 
-<span class="va">csv_pipeline</span>
-<span class="co">#&gt; # A pipeline: clean and save to csv </span>
-<span class="co">#&gt; ### Steps: 2</span>
-<span class="co">#&gt;      [,1]                      [,2]         </span>
-<span class="co">#&gt; [1,] ~janitor::clean_names(.x) "transformer"</span>
-<span class="co">#&gt; [2,] formula,2                 "transformer"</span></code></pre></div>
+<span class="va">csv_pipeline</span></code></pre></div>
 <p>Lastly, we can set this as the pipeline for our previously created
 spider and run the spider one last time.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">final_nrevss_spider</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/set_pipeline.html">set_pipeline</a></span><span class="op">(</span><span class="va">nrevss_with_transformer</span>, <span class="va">csv_pipeline</span><span class="op">)</span> 
 
-<span class="va">final_nrevss_spider</span>
-<span class="co">#&gt; # A spider: nrevss </span>
-<span class="co">#&gt; ### Queue: 1 item(s)</span>
-<span class="co">#&gt; ### Steps: 4</span>
-<span class="co">#&gt;      [,1]                [,2]         </span>
-<span class="co">#&gt; [1,] formula,2           "parser"     </span>
-<span class="co">#&gt; [2,] formula,2           "parser"     </span>
-<span class="co">#&gt; [3,] formula,2           "parser"     </span>
-<span class="co">#&gt; [4,] ~do.call(rbind, .x) "transformer"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Pipeline</span>
-<span class="co">#&gt; -------</span>
-<span class="co">#&gt; # A pipeline: clean and save to csv </span>
-<span class="co">#&gt; ### Steps: 2</span>
-<span class="co">#&gt;      [,1]                      [,2]         </span>
-<span class="co">#&gt; [1,] ~janitor::clean_names(.x) "transformer"</span>
-<span class="co">#&gt; [2,] formula,2                 "transformer"</span></code></pre></div>
+<span class="va">final_nrevss_spider</span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">final_nrevss_spider</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 208 × 4</span></span>
-<span class="co">#&gt;        x rep_week_date reg_id antigen_detection</span>
-<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1 08/28/21           1              2.38</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2 09/04/21           1              2.38</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3 09/11/21           1              0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4 09/18/21           1              0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5 09/25/21           1              0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6 10/02/21           1              0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7 10/09/21           1              0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8 10/16/21           1              0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9 10/23/21           1              0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10 10/30/21           1              2.56</span>
-<span class="co">#&gt; <span style="color: #949494;"># … with 198 more rows</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">final_nrevss_spider</span><span class="op">)</span></code></pre></div>
 <p>The spider has now cleaned the names of the pipline and saved to an
 output file.</p>
   </div>

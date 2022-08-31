@@ -6,6 +6,11 @@
 \usage{
 pipeline(name = "", steps = list())
 }
+\arguments{
+\item{name}{name of the pipeline}
+
+\item{steps}{a \code{\link[=list]{list()}} of \code{\link[=steps]{steps()}} to be applied}
+}
 \description{
 combination of multiple steps to be applied in parellel to data
 }

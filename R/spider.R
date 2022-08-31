@@ -2,17 +2,16 @@
 #'
 #' combination of multiple steps to be applied in parellel to data
 #'
-#' @section Queue:
-#' The queue is a list of items to be passed through each of the
-#' spider's steps. It is usually a list of urls that are then scraped individually by a parser
-#' @section Steps:
-#' Each spider is made of a series of steps.
-#'
 #' @param name the name of the spider to be used for logging purposes
-#' @param queue the list of urls or initial paths to be used by parsers
-#' @param steps a list of parsers or transformers to be applied to the data sequencially
-#' @param pipeline the default pipeline to apply to the data after all steps are applied
+#' @param queue the [list()] of urls or initial paths to be used by [steps()]
+#' @param steps a [list()] of [steps()] to be applied to the data sequencially
+#' @param pipeline the default [pipeline()] to apply to the data after all steps are applied
 #' @export
+#' @examples
+#' s_multiply <- spider('multiply', queue = 1:4, steps = list(parser( ~ .x * 2)))
+#' s_multiply
+#'
+#' run(s_multiply)
 spider <- function(name = "",
                    queue = list(),
                    steps = list(),
@@ -28,15 +27,20 @@ spider <- function(name = "",
     value
 }
 
+print_steps <- function(x) {
+    cat(paste0("### Steps: ", length(x$steps), "\n"))
+    if (length(x$steps) > 0) {
+        for (step in seq_along(x$steps)) {
+            print(x$steps[[step]], number = step)
+        }
+    }
+}
+
 #' @export
 print.spider <- function(x, ...) {
     cat(paste("# A spider:", x$name, "\n"))
     cat(paste("### Queue:", length(x$queue), "item(s)\n"))
-    cat(paste0("### Steps: ", length(x$steps), "\n"))
-    if (length(x$steps) > 0) {
-        print(do.call(rbind, x$steps))
-    }
-
+    print_steps(x)
 
     if (class(x$pipeline) != "logical") {
         cat("\nPipeline\n-------\n")
@@ -53,8 +57,11 @@ print.spider <- function(x, ...) {
 #'
 #' template <- spider("template")
 #'
-#' implementation_one <- set_name(spider, "implementation_one")
-#' implementation_two <- set_name(spider, "implementation_two")
+#' implementation_one <- set_name(spider(), "implementation_one")
+#' implementation_one
+#'
+#' implementation_two <- set_name(spider(), "implementation_two")
+#' implementation_two
 #' @family helpers
 set_name <- function(.x, name) {
     .x$name <- name
@@ -63,21 +70,13 @@ set_name <- function(.x, name) {
 
 run_steps <- function(x, .data, spider = NA) {
     for (step in x$steps) {
-        if (step[[2]] == "parser") {
-            f <- step[[1]]
-            .data <- purrr::map(.data, f, spider)
-            .data <- purrr::flatten(.data)
-        } else {
-            .data <- purrr::map(list(.data), step[[1]], spider)
-            if (1 == length(.data)) {
-                .data <- .data[[1]]
-            }
-        }
+        .data <- run(step, .data, spider)
     }
     .data
 }
 
 #' @export
+#' @rdname run
 run.spider <- function(.x) {
     .data <- run_steps(.x, .x$queue, .x)
     if (class(.x$pipeline) != "logical") {
@@ -90,6 +89,11 @@ run.spider <- function(.x) {
 #' Add items to a spider queue
 #'
 #' @export
+#' @family helpers
+#' @examples
+#' spider() %>% add_queue("first item")
+#'
+#' spider() %>% add_queue(c("first item", "second item"))
 add_queue <- function(.x, items) {
     for (item in as.list(items)) {
         .x$queue[length(.x$queue) + 1] <- item

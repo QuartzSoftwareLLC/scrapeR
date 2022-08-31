@@ -9,23 +9,18 @@ spider(name = "", queue = list(), steps = list(), pipeline = NA)
 \arguments{
 \item{name}{the name of the spider to be used for logging purposes}
 
-\item{queue}{the list of urls or initial paths to be used by parsers}
+\item{queue}{the \code{\link[=list]{list()}} of urls or initial paths to be used by \code{\link[=steps]{steps()}}}
 
-\item{steps}{a list of parsers or transformers to be applied to the data sequencially}
+\item{steps}{a \code{\link[=list]{list()}} of \code{\link[=steps]{steps()}} to be applied to the data sequencially}
 
-\item{pipeline}{the default pipeline to apply to the data after all steps are applied}
+\item{pipeline}{the default \code{\link[=pipeline]{pipeline()}} to apply to the data after all steps are applied}
 }
 \description{
 combination of multiple steps to be applied in parellel to data
 }
-\section{Queue}{
+\examples{
+s_multiply <- spider('multiply', queue = 1:4, steps = list(parser( ~ .x * 2)))
+s_multiply
 
-The queue is a list of items to be passed through each of the
-spider's steps. It is usually a list of urls that are then scraped individually by a parser
+run(s_multiply)
 }
-
-\section{Steps}{
-
-Each spider is made of a series of steps.
-}
-

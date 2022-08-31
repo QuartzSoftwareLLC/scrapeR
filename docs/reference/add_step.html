@@ -60,21 +60,35 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">add_step</span><span class="op">(</span><span class="va">.x</span>, <span class="va">parser</span><span class="op">)</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">add_step</span><span class="op">(</span><span class="va">.x</span>, <span class="va">step</span>, after <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">steps</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu">add_parser</span><span class="op">(</span><span class="va">.x</span>, <span class="va">parser</span><span class="op">)</span>
+<span class="fu">add_parser</span><span class="op">(</span><span class="va">.x</span>, <span class="va">...</span>, after <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">steps</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu">add_transformer</span><span class="op">(</span><span class="va">.x</span>, <span class="va">parser</span><span class="op">)</span></code></pre></div>
+<span class="fu">add_transformer</span><span class="op">(</span><span class="va">.x</span>, <span class="va">...</span>, after <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">steps</span><span class="op">)</span><span class="op">)</span></code></pre></div>
     </div>
 
+    <div id="arguments">
+    <h2>Arguments</h2>
+    <dl><dt>.x</dt>
+<dd><p>the spider or pipeline to update</p></dd>
+<dt>step</dt>
+<dd><p>the parser or transformer step to add</p></dd>
+<dt>after</dt>
+<dd><p>the index after which the step should be added</p></dd>
+</dl></div>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p>Other helpers: 
+<code><a href="add_queue.html">add_queue</a>()</code>,
 <code><a href="run.html">run</a>()</code>,
 <code><a href="set_name.html">set_name</a>()</code>,
 <code><a href="set_pipeline.html">set_pipeline</a>()</code></p></div>
     </div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

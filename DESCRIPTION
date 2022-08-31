@@ -11,6 +11,7 @@ Suggests:
     knitr,
     rmarkdown,
     purrr,
+    janitor,
     rvest,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
