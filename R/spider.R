@@ -18,8 +18,10 @@ spider <- function(name = "",
                    pipeline = NA) {
     value <- list(
         name = name,
+        debug = F,
         queue = as.list(queue),
         steps = steps,
+        debugParallel = F,
         pipeline = pipeline
     )
     # class can be set using class() or attr() function

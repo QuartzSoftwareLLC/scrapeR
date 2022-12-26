@@ -89,12 +89,15 @@ print.parser <- function(x, number = 1, ...) {
 
 #' @export
 #' @rdname run
-run.parser <- function(.x, .data, spider = spider()) {
+run.parser <- function(.x, .data, .spider = spider()) {
+    if (.spider$debug) {
+        .data <- head(.data, .spider$debugHead)
+    }
     if (is.function(.x$apply)) {
-        .data <- .x$apply(.data, .x, spider)
+        .data <- .x$apply(.data, .x, .spider = .spider)
     } else {
         cat("Executing parser ", .x$name, "\n")
-        .data <- purrr::map(.data, .x[[1]], spider)
+        .data <- purrr::map(.data, .x[[1]], .spider)
     }
 
     if (.x$flatten) {

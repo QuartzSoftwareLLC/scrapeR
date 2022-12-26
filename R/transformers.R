@@ -72,6 +72,7 @@ t_save_aws <- function(bucket = getOption("aws_bucket"), dir = getOption("aws_di
                 object = paste0(dir, "/", filename),
                 bucket = bucket
             )
+            .x
         },
         name = "save to aws"
     )
