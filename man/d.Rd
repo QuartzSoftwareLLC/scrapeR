@@ -5,9 +5,8 @@
 \title{debug
 sets a debugger breakpoint}
 \usage{
-d(obj)
+d(obj, head = 1, parallel = F)
 }
 \description{
-debug
-sets a debugger breakpoint
+This will automatically start running the scraper and drop into the debugger where placed. It assigns environment variables .x as the first item in the queue and .d as the entire queue.
 }

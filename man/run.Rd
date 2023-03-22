@@ -18,7 +18,7 @@ run(.x, ...)
 
 \method{run}{spider}(.x)
 
-\method{run}{parser}(.x, .data, spider = spider())
+\method{run}{parser}(.x, .data, .spider = spider())
 
 \method{run}{transformer}(.x, .data, spider = spider())
 }

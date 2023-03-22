@@ -87,6 +87,7 @@ print.parser <- function(x, number = 1, ...) {
     cat(paste("(", number, ") A parser:", x$name, "\n"))
 }
 
+
 #' @export
 #' @rdname run
 run.parser <- function(.x, .data, .spider = spider()) {
@@ -97,11 +98,14 @@ run.parser <- function(.x, .data, .spider = spider()) {
         .data <- .x$apply(.data, .x, .spider = .spider)
     } else {
         cat("Executing parser ", .x$name, "\n")
-        .data <- purrr::map(.data, .x[[1]], .spider)
+        .data <- purrr::imap(.data, .x[[1]], .spider)
     }
 
     if (.x$flatten) {
-        .data <- purrr::flatten(.data)
+        # print(.data)
+        # browser()
+        .data <- purrr::list_flatten(.data) |> purrr::list_flatten() |> unlist()
+        .data <- setNames(.data, paste0(names(.data), "&&", .data))
     }
     .data
 }

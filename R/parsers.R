@@ -5,7 +5,7 @@ NULL
 
 #' read html
 #'
-#' Uses the built rvest function to read the urls
+#' Uses the built rvest function to read the urls in parallel
 #' @inherit p
 #' @export
 p_read_html <- function() {

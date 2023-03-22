@@ -43,11 +43,11 @@ Lets start by adding some steps to our spider.
 We will begin by adding a step to grab all card links on the page.
 
 ```{r}
-nrevss_spider %>%
+nrevss_spider |>
     add_parser(~ {
-        read_html(.x) %>%
-            html_nodes("a.card") %>%
-            html_attr("href") %>%
+        read_html(.x) |>
+            html_nodes("a.card") |>
+            html_attr("href") |>
             sapply(\(x) paste0(root, x))
     }) -> nrevss_spider
 
@@ -64,33 +64,33 @@ Lets add a couple more steps to our above spider.
 In this example, we will start from scratch.
 
 ```{r}
-spider("nrevss") %>%
+spider("nrevss") |>
     add_queue(paste0(
         root,
         "/surveillance/nrevss/rotavirus/index.html"
-    )) %>%
+    )) |>
     add_parser(~ {
-        read_html(.x) %>%
-            html_nodes("a.card") %>%
-            html_attr("href") %>%
+        read_html(.x) |>
+            html_nodes("a.card") |>
+            html_attr("href") |>
             sapply(\(x) paste0(root, x))
-    }) %>%
+    }) |>
     add_parser(~ {
-        read_html(.x) %>%
+        read_html(.x) |>
             html_nodes("a") -> els
 
         tibble(
             text = html_text(els),
             href = html_attr(els, "href")
-        ) %>%
-            subset(grepl("Table", text)) %>%
-            subset(!grepl("Nat", href)) %>%
+        ) |>
+            subset(grepl("Table", text)) |>
+            subset(!grepl("Nat", href)) |>
             with(
                 paste0(root, href)
             )
-    }) %>%
+    }) |>
     add_parser(~ {
-        read_html(.x) %>%
+        read_html(.x) |>
             html_table()
     }) -> nrevss_spider_2
     
@@ -104,7 +104,7 @@ We now need to combine these tables into a single table. To do this, we use a **
 `add_transformer` function.
 
 ```{r}
-nrevss_spider_2 %>%
+nrevss_spider_2 |>
     add_transformer(
         ~ do.call(rbind, .x)
     ) -> nrevss_with_transformer
@@ -121,10 +121,10 @@ can be reused acorss spiders. Lets create a **pipeline** to clean our column nam
 save the results to and `output` folder.
 
 ```{r}
-pipeline("clean and save to csv") %>%
+pipeline("clean and save to csv") |>
     add_transformer(
         ~ janitor::clean_names(.x)
-    ) %>%
+    ) |>
     add_transformer(~ {
         dir.create("output", showWarnings = F)
         write.csv(
